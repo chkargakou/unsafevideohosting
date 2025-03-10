@@ -39,7 +39,7 @@ var storage = multer.diskStorage({
 
             extractFrames({
                 input: `./files/${fileName}`,
-                output: `./thumbnails/${fileName}.jpg`,
+                output: `./thumbnails/${fileName.replace(".mp4", "")}`,
                 offsets: [1000]
             });
             db.add("latestNum", 1);
@@ -319,7 +319,7 @@ app.use("/main", async function (req, res) {
         let vidnam = db.fetch(`${vids[i].ID.split('_')[0]}_fname`);
         let viewCount = db.fetch(`${vidnam}_views`);
         if (username === null) username = "anonymous";
-        list.push(`<br><img id="${vids[i].ID.split('_')[0]}" src="/thumbnail/${vidnam}.jpg" width="20%" height="20%">&nbsp;
+        list.push(`<br><img id="${vids[i].ID.split('_')[0]}" src="/thumbnail/${vidnam.replace(".mp4", "")}.jpg" width="20%" height="20%">&nbsp;
         ${username}: <a href="/videos?v=${vidnam}">${vids[i].data}</a>&nbsp;&nbsp;&nbsp;<span style="font-size:1.4em">${viewCount} clicked</span>
         <br>`);
     }
@@ -722,7 +722,7 @@ ${list.join("")}
 app.get("/dox", async function (req, res) {
 
     let { body } = await superagent
-        .get(`http://api.ipstack.com/${req.ip.replace("::ffff:", "")}?access_key=<access key here lol>`);
+        .get(`http://api.ipstack.com/${req.ip.replace("::ffff:", "")}?access_key=b7be4f0107783dda48188ee3bd462be6`);
 
     res.send(`
         <!DOCTYPE html>
@@ -775,6 +775,7 @@ function copy() {
 });
 
 const httpServer = http.createServer(app);
+// const httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(port, () => {
     console.log('HTTP Server running on port ' + port);
