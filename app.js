@@ -126,10 +126,9 @@ app.get('/auto', async function (req, res) {
     <style>
         body {
             width: 100%;
-            height: 100%;
-            max-height: 1500px;
-            margin: 40px auto;
-            max-width: 1500px;
+            height: 80%;
+            max-height: 100%;
+            max-width: 100%;
             background-color: #000;
         }
     </style>
@@ -144,22 +143,24 @@ function copy() {
   document.execCommand("copy");
   
 }
-document.getElementById('playerHater').addEventListener('ended', refresh, false);
-function refresh(e) {
-    window.location.reload();
-}
 </script>
 </head>
 
-<body>
-    <video id="playerHater" style="width:100%;height:100%;max-width:1000px;max-height:720px;" autoplay controls>
-        <source src="./files/${link}" type="video/mp4">
+<body><center>
+    <video onclick="wp()" id="playerHater" style="width:100%;height:100%;max-width:1000px;max-height:720px;" autoplay controls>
+    <source src="./files/${link}" type="video/mp4">
     </video>
-    <h1 style="color:#fff;padding-left:auto;">spongebob carpetbombing moments</h1>
+    <h1 style="color:#fff;padding-left:auto;">try tapping/clicking the video</h1>
     <a style="font-size:28px;" href="/main">back to main</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="http://video.chrysa.eu/files/${link}" id="linkCopy"> <button onclick="copy()">To Clipboard</button>&nbsp;<button onclick="window.location.reload();">Random Video</button>
     <p></p>
+    </center>
 </body>
 </html>
+<script type="text/javascript">
+function wp () {
+     document.getElementById('playerHater').addEventListener('ended', window.location.reload(), false);
+    }
+     </script>
     `);
 });
 
@@ -775,7 +776,6 @@ function copy() {
 });
 
 const httpServer = http.createServer(app);
-// const httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(port, () => {
     console.log('HTTP Server running on port ' + port);
