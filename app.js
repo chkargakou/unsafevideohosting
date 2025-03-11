@@ -284,7 +284,7 @@ app.post('/imupload', function (req, res) {
             return res.end("Error uploading file.");
         }
 
-        if (req.body.username.length > 0) db.set(`${db.fetch("latestP")}_username`, req.body.username);
+        if (req.body.username.length > 0) db.set(`${db.fetch("latestP")}_im_username`, req.body.username);
         db.set(`${db.fetch("latestP")}_photo`, req.body.title);
         res.end("File uploaded successfully!");
         var exec = require("child_process").exec;
@@ -301,7 +301,7 @@ app.post('/adupload', function (req, res) {
             return res.end("Error uploading file.");
         }
 
-        if (req.body.username.length > 0) db.set(`${db.fetch("latestA")}_username`, req.body.username);
+        if (req.body.username.length > 0) db.set(`${db.fetch("latestA")}_au_username`, req.body.username);
         db.set(`${db.fetch("latestA")}_audio`, req.body.title);
         res.end("File uploaded successfully!");
         var exec = require("child_process").exec;
@@ -601,7 +601,7 @@ app.use("/images", async function (req, res) {
     let list = [];
 
     for (var i = pics.length - 1; i >= 0; i--) {
-        let username = db.fetch(`${pics[i].ID.split('_')[0]}_username`);
+        let username = db.fetch(`${pics[i].ID.split('_')[0]}_im_username`);
         let img = db.fetch(`${pics[i].ID.split('_')[0]}_pname`);
         if (username === null) username = "anonymous";
         list.push(`<div id="${i + 1}" class="column" style="float:left;width:100%;"><p><a href="./files/${img}"><img src="./files/${img}" width="100" height="100" border="2px"></a>&nbsp;&nbsp;<p style="display:grid;color:#fff"><b>${username}</b> ${pics[i].data}</p></p></p></div>`);
@@ -662,7 +662,7 @@ app.use("/audio", async function (req, res) {
     let list = [];
 
     for (var i = audio.length - 1; i >= 0; i--) {
-        let username = db.fetch(`${audio[i].ID.split('_')[0]}_username`);
+        let username = db.fetch(`${audio[i].ID.split('_')[0]}_au_username`);
         let adio = db.fetch(`${audio[i].ID.split('_')[0]}_aname`);
         if (adio.includes("ogg")) type = "ogg"
         else type = "mpeg";
