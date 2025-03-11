@@ -452,7 +452,7 @@ app.get("/videos", async function (req, res) {
         <meta name="twitter:site" content="/" />
         <meta name="twitter:title" content="${author}" />
         <meta name="twitter:description" content="${title}" />
-        <meta name="twitter:image" content="/thumbnail/${fixd}.jpg" />
+        <meta name="twitter:image" content="/thumbnail/${fixd.replace(".mp4", "")}.jpg" />
         <meta name="twitter:player" content="/files/${fixd}" />
         <meta name="twitter:player:width" content="320" />
         <meta name="twitter:player:height" content="180" />
@@ -462,7 +462,7 @@ app.get("/videos", async function (req, res) {
         <title>UNSAFE VIDEO HOSTING 3000 | trim.13da2ae9-9bb2-47c8-90c4-6623b32e90f7.mov</title>
         <meta property="og:site_name" content="UNSAFE VIDEO HOSTING 3000">
         <meta property="og:title" content="${author}">
-        <meta property="og:image" content="/thumbnail/${fixd}.jpg">
+        <meta property="og:image" content="/thumbnail/${fixd.replace(".mp4", "")}.jpg">
         <meta property="og:video:type" content="text/html">
         <meta property="og:video:url" content="https://video.chrysa.eu/embed?v=${fixd}">
         <meta property="og:video:height" content="720">
